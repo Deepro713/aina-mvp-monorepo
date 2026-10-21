@@ -1,0 +1,25 @@
+# deps
+node_modules/
+.pnp*
+# next / build
+.next/
+out/
+dist/
+build/
+*.tsbuildinfo
+# env
+.env
+.env.*
+!.env.example
+# local data
+*.sqlite
+*.sqlite3
+# misc
+.DS_Store
+*.log
+coverage/
+.vercel
+# python tooling (if any scripts are added)
+venv/
+.venv/
+__pycache__/

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Feedback Sentiment Analyser – Customer Feedback Analysis</title>
+<meta name="description" content="Paste customer feedback. Your own model labels each comment by sentiment and category, then counts it for you. No password and no card.">
+<meta property="og:title" content="Feedback Sentiment Analyser – Paste customer feedback. See the breakdown.">
+<meta property="og:description" content="Your own model labels each comment by sentiment and category, then counts it for you.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="./og-image.png">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+body{font-family:Inter,system-ui,sans-serif;color:#0F172A}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+html{scroll-behavior:smooth}
+section{scroll-margin-top:64px}
+</style>
+</head>
+<body class="bg-white antialiased">
+
+<header class="sticky top-0 z-50 border-b border-slate-200 bg-white/95">
+  <nav class="mx-auto flex max-w-[1200px] items-center gap-4 overflow-x-auto px-4 py-3 text-sm sm:px-6">
+    <a href="#hero" class="shrink-0 font-semibold">Feedback Sentiment Analyser</a>
+    <div class="ml-auto flex shrink-0 gap-4 text-slate-600">
+      <a href="#hero" class="hover:text-[#4F46E5]">Home</a>
+      <a href="#features" class="hover:text-[#4F46E5]">Features</a>
+      <a href="#faq" class="hover:text-[#4F46E5]">FAQ</a>
+      <a href="#social" class="hover:text-[#4F46E5]">Social</a>
+      <a href="#footer" class="hover:text-[#4F46E5]">About</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+<section id="hero" class="px-4 py-16 sm:px-6 md:py-24">
+  <div class="mx-auto max-w-[1200px]">
+    <div class="max-w-[640px]">
+      <h1 class="text-4xl font-semibold leading-tight tracking-tight md:text-5xl">Paste customer feedback. See the breakdown.</h1>
+      <h2 class="mt-4 text-lg text-slate-600">Your own model labels each comment by sentiment and category, then counts it for you.</h2>
+      <ul class="mt-6 space-y-2">
+        <li class="flex gap-2"><span class="text-[#16A34A]" aria-hidden="true">✓</span>Label 25 comments in about 2 minutes</li>
+        <li class="flex gap-2"><span class="text-[#16A34A]" aria-hidden="true">✓</span>Compare this month's counts to last month's</li>
+        <li class="flex gap-2"><span class="text-[#16A34A]" aria-hidden="true">✓</span>Fix a wrong label in one click</li>
+      </ul>
+      <a href="/signin" class="mt-8 inline-block rounded-md bg-[#4F46E5] px-5 py-3 text-[15px] font-medium text-white hover:bg-[#4338CA] focus:outline-none focus:ring-2 focus:ring-[#4F46E5] focus:ring-offset-2">Paste Feedback →</a>
+      <p class="mt-4 text-sm text-slate-600">No password and no card. You pay your model provider, not us.</p>
+      <div class="mt-6 flex flex-wrap gap-2">
+        <span class="mono rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs text-slate-600">No password</span>
+        <span class="mono rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs text-slate-600">No card</span>
+        <span class="mono rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs text-slate-600">Keys encrypted, last 4 shown</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="features" class="border-t border-slate-200 bg-slate-50 px-4 py-16 sm:px-6 md:py-24">
+  <div class="mx-auto max-w-[1200px]">
+    <h2 class="text-[1.75rem] font-semibold tracking-tight">What it does</h2>
+    <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="rounded-lg border border-slate-200 bg-white p-6"><h3 class="font-semibold">Sign in without a password</h3><p class="mt-2 text-sm text-slate-600">Type your email and we send you a link. It works once and expires after 10 minutes.</p></div>
+      <div class="rounded-lg border border-slate-200 bg-white p-6"><h3 class="font-semibold">Bring the model you pay for</h3><p class="mt-2 text-sm text-slate-600">OpenAI, Anthropic, Gemini or any OpenAI-compatible HTTPS endpoint. Save unlocks after a test passes: <span class="mono text-[#16A34A]">OK · 840 ms</span>. Keys encrypted, last 4 shown.</p></div>
+      <div class="rounded-lg border border-slate-200 bg-white p-6"><h3 class="font-semibold">Every comment labelled and summarised</h3><p class="mt-2 text-sm text-slate-600">One of 4 sentiments, one of 7 categories and a summary of 25 words or fewer. Unreadable output gets one retry, or the row says nothing was saved.</p></div>
+      <div class="rounded-lg border border-slate-200 bg-white p-6"><h3 class="font-semibold">Paste 25 comments at once</h3><p class="mt-2 text-sm text-slate-600">One per line, run <span class="mono">3</span> at a time. If one fails, retry that row. The other 24 are already saved.</p></div>
+      <div class="rounded-lg border border-slate-200 bg-white p-6"><h3 class="font-semibold">Counts by sentiment and category</h3><p class="mt-2 text-sm text-slate-600">7 days, 30 days or all time. Fixed labels mean "Pricing &amp; billing" lines up month to month.</p></div>
+      <div class="rounded-lg border border-slate-200 bg-white p-6"><h3 class="font-semibold">Fix wrong labels, see how often</h3><p class="mt-2 text-sm text-slate-600">Change a label from the dashboard. Every change is logged, so you can measure how often your model is wrong.</p></div>
+      <div class="rounded-lg border border-slate-200 bg-white p-6"><h3 class="font-semibold">Delete an entry or everything</h3><p class="mt-2 text-sm text-slate-600">Remove any entry. Type your email to delete your account, connection, entries and correction history.</p></div>
+      <div class="rounded-lg border border-slate-200 bg-white p-6"><h3 class="font-semibold">Read where your data goes</h3><p class="mt-2 text-sm text-slate-600">Pasted text goes only to the provider you connect. Data is stored in one US region. Don't paste health information.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="border-t border-slate-200 px-4 py-16 sm:px-6 md:py-24">
+  <div class="mx-auto max-w-[640px]">
+    <h2 class="text-[1.75rem] font-semibold tracking-tight">FAQ</h2>
+    <div class="mt-8 divide-y divide-slate-200 border-y border-slate-200">
+      <details class="py-4"><summary class="cursor-pointer font-medium">What does this actually do?</summary><p class="mt-2 text-slate-600">You paste customer comments, one per line, and your connected model labels each with a sentiment, a category and a summary of 25 words or fewer. Every entry is saved, and a dashboard counts them by sentiment and category.</p></details>
+      <details class="py-4"><summary class="cursor-pointer font-medium">Who is this for, and who isn't it for?</summary><p class="mt-2 text-slate-600">It's for a PM or founder at a small software company who sorts feedback by hand and already has a model API key. It's not for teams that need shared dashboards, Zendesk or Intercom sync, custom categories, or handling of regulated data.</p></details>
+      <details class="py-4"><summary class="cursor-pointer font-medium">Why not just use ChatGPT and a spreadsheet?</summary><p class="mt-2 text-slate-600">ChatGPT's labels drift between sessions, and nothing is saved in one place. Here the 7 categories never change, every entry is stored with its date, and the counts are already done.</p></details>
+      <details class="py-4"><summary class="cursor-pointer font-medium">What does it cost? Is there a contract?</summary><p class="mt-2 text-slate-600">V1 has no billing and no contract. Your only cost is what your model provider charges per call, which is capped by 25 entries per batch and 500 analyses a day.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="social" class="border-t border-slate-200 bg-slate-50 px-4 py-16 sm:px-6 md:py-24">
+  <div class="mx-auto max-w-[1200px]">
+    <h2 class="text-[1.75rem] font-semibold tracking-tight">Social posts</h2>
+    <p class="mt-2 text-sm text-slate-600">Select the text and copy.</p>
+    <div class="mt-8 grid gap-4 md:grid-cols-3">
+      <article class="rounded-lg border border-slate-200 bg-white p-6">
+        <span class="mono rounded-full border border-indigo-200 bg-[#EEF2FF] px-2.5 py-1 text-xs text-indigo-700">Twitter/X · Problem</span>
+        <p class="mt-4 whitespace-pre-line text-sm">Friday routine: paste 10 comments into ChatGPT, ask "positive or negative?", type the answers into a Sheet. Repeat until the pile is gone.
+
+Last week it said "billing". This week it says "pricing issue". Now the counts don't match.
+
+We built a fix. #productmanagement #customerfeedback</p>
+      </article>
+      <article class="rounded-lg border border-slate-200 bg-white p-6">
+        <span class="mono rounded-full border border-indigo-200 bg-[#EEF2FF] px-2.5 py-1 text-xs text-indigo-700">Twitter/X · Outcome</span>
+        <p class="mt-4 whitespace-pre-line text-sm">25 customer comments in. Back out: a sentiment, a category and a one-line summary for each, saved and counted by week.
+
+It runs on your own OpenAI, Anthropic or Gemini key. We don't touch your model bill.
+
+Paste customer feedback. See the breakdown. #SaaS #productmanagement</p>
+      </article>
+      <article class="rounded-lg border border-slate-200 bg-white p-6">
+        <span class="mono rounded-full border border-indigo-200 bg-[#EEF2FF] px-2.5 py-1 text-xs text-indigo-700">Twitter/X · Behind the scenes</span>
+        <p class="mt-4 whitespace-pre-line text-sm">Something we chose not to build: custom categories.
+
+The labels are fixed at 4 sentiments and 7 categories. That's on purpose. If the label names change every week, "are billing complaints going up?" has no answer.
+
+Fixed labels make counts you can compare. #buildinpublic #customerfeedback</p>
+      </article>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer id="footer" class="border-t border-slate-200 px-4 py-10 sm:px-6">
+  <div class="mx-auto flex max-w-[1200px] flex-col gap-2 text-sm text-slate-600 sm:flex-row sm:justify-between">
+    <div><p class="font-semibold text-slate-900">Feedback Sentiment Analyser</p><p>Paste customer feedback. See the breakdown.</p></div>
+    <p>© 2026 [Company Name]. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>
