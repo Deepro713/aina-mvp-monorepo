@@ -1,29 +1,28 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { LogOut } from "lucide-react";
 import { DeleteAccountForm } from "@/components/DeleteAccountForm";
 import { buttonClass, Card, pageClass, PageHeader, Pill } from "@/components/kit";
 import { loadAppContext } from "@/lib/app-context";
 import { timeAgo } from "@/lib/format";
 import { PROVIDER_META } from "@/lib/labels";
-import { signOutAction } from "../actions";
 
 export const metadata: Metadata = { title: "Account · Feedback Sentiment Analyser" };
 
 export default async function AccountPage() {
   const { user, connection } = await loadAppContext();
-  if (!user) redirect("/signin");
+  if (!user) redirect("/");
   return (
     <div className={`${pageClass} space-y-8`}>
-      <PageHeader crumbs={["App", "Account"]} title="Account" description="Your sign-in details, model connection and privacy controls." />
+      <PageHeader crumbs={["App", "Account"]} title="Account" description="Your workspace, model connection and privacy controls." />
       <div className="grid gap-6 md:grid-cols-2">
         <Card>
-          <h2 className="text-sm font-medium text-slate-400">Signed in as</h2>
-          <p className="mt-1 break-all font-mono text-lg text-white">{user.email}</p>
-          <form action={signOutAction} className="mt-6">
-            <button type="submit" className={buttonClass("secondary")}><LogOut aria-hidden className="size-4" />Sign out</button>
-          </form>
+          <h2 className="text-sm font-medium text-slate-400">Workspace</h2>
+          <p className="mt-1 text-lg text-white">Private to this browser</p>
+          <p className="mt-2 text-sm text-slate-400">
+            No sign-in needed. Your connection and entries are tied to a cookie in this browser, so clearing cookies
+            or switching browsers starts a fresh workspace.
+          </p>
         </Card>
         <Card>
           <h2 className="text-sm font-medium text-slate-400">Model connection</h2>
@@ -42,10 +41,10 @@ export default async function AccountPage() {
       <Card className="border-rose-500/30">
         <h2 className="text-lg font-semibold text-rose-200">Danger zone</h2>
         <p className="mt-1.5 max-w-2xl text-sm text-slate-400">
-          Deleting your account permanently removes your model connection, every analyzed entry and your correction history,
-          and signs you out. This can&apos;t be undone.
+          Deleting your workspace permanently removes your model connection, every analyzed entry and your correction
+          history. This can&apos;t be undone.
         </p>
-        <DeleteAccountForm email={user.email} />
+        <DeleteAccountForm />
       </Card>
     </div>
   );

@@ -1,19 +1,21 @@
-// Usage: npm run db:seed -- you@example.com
-// Creates (or reuses) the user and replaces their sample entries. Sign in with the same email to see them.
+// Usage: npm run db:seed -- <workspace-id>
+// The workspace id is the value of your browser's `fa_workspace` cookie (open /dashboard once to get one).
+// Creates (or reuses) that workspace and replaces its sample entries.
 import { config as loadEnv } from "dotenv";
 import { neon } from "@neondatabase/serverless";
 import { and, eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/neon-http";
 import * as schema from "../lib/db/schema";
 import { SAMPLE_FEEDBACK, SAMPLE_MODEL_ID } from "../lib/sample-data";
+import { isWorkspaceId } from "../lib/workspace-cookie";
 
 loadEnv({ path: ".env.local" });
 loadEnv();
 
 async function main() {
-  const email = process.argv[2]?.trim().toLowerCase();
-  if (!email || !email.includes("@")) {
-    console.error("Usage: npm run db:seed -- you@example.com");
+  const id = process.argv[2]?.trim().toLowerCase();
+  if (!isWorkspaceId(id)) {
+    console.error("Usage: npm run db:seed -- <workspace-id from the fa_workspace cookie>");
     process.exit(1);
   }
   const url = process.env.DATABASE_URL_UNPOOLED ?? process.env.DATABASE_URL;
@@ -21,8 +23,8 @@ async function main() {
   const db = drizzle({ client: neon(url), schema });
   const { users, feedbackEntries, labelCorrections } = schema;
 
-  await db.insert(users).values({ email }).onConflictDoNothing({ target: users.email });
-  const [user] = await db.select().from(users).where(eq(users.email, email));
+  await db.insert(users).values({ id, email: `${id}@guest.invalid` }).onConflictDoNothing({ target: users.id });
+  const user = { id };
 
   await db.delete(feedbackEntries)
     .where(and(eq(feedbackEntries.userId, user.id), eq(feedbackEntries.modelId, SAMPLE_MODEL_ID)));
@@ -44,7 +46,7 @@ async function main() {
   });
   if (corrections.length) await db.insert(labelCorrections).values(corrections);
 
-  console.log(`Seeded ${rows.length} entries and ${corrections.length} correction(s) for ${email}.`);
+  console.log(`Seeded ${rows.length} entries and ${corrections.length} correction(s) for workspace ${id}.`);
 }
 
 main().catch((e) => {

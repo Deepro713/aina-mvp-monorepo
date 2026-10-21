@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
 import type { z } from "zod";
-import { auth } from "@/auth";
 import { DbNotConfiguredError } from "@/lib/db/client";
 import { KeyConfigError } from "@/lib/crypto/keys";
 import { SsrfError, ssrfToApiError } from "@/lib/llm/ssrf";
 import { log, type LogFields } from "@/lib/log";
+import { getWorkspaceUser } from "@/lib/workspace";
 import { ApiError } from "./errors";
 
 export type RouteCtx<P> = { req: Request; requestId: string; params: P; log: LogFields };
@@ -41,7 +41,7 @@ function toApiError(err: unknown, fields: LogFields): ApiError {
 
 function assertSameOrigin(req: Request): void {
   const origin = req.headers.get("origin");
-  if (!origin) return; // non-browser clients still need the session cookie
+  if (!origin) return; // non-browser clients still need the workspace cookie
   const host = req.headers.get("x-forwarded-host") ?? req.headers.get("host");
   let originHost = "";
   try { originHost = new URL(origin).host; } catch { /* malformed → mismatch */ }
@@ -76,11 +76,10 @@ export function apiRoute<P extends Record<string, string> = Record<string, strin
 }
 
 export async function requireUserId(ctx: RouteCtx<unknown>): Promise<string> {
-  const session = await auth();
-  const id = session?.user?.id;
-  if (!id) throw new ApiError(401, "unauthorized", "Sign in to continue.");
-  ctx.log.user_id = id;
-  return id;
+  const user = await getWorkspaceUser();
+  if (!user) throw new ApiError(401, "unauthorized", "No workspace cookie. Reload the page and try again.");
+  ctx.log.user_id = user.id;
+  return user.id;
 }
 
 export async function readJson(req: Request): Promise<unknown> {

@@ -26,7 +26,6 @@ export async function apiFetch<T>(url: string, init: RequestInit = {}): Promise<
   } catch {
     throw new ApiClientError(0, "network_error", "Couldn't reach the server. Check your connection and retry.", { retryable: true });
   }
-  if (res.status === 401 && typeof window !== "undefined") window.location.assign("/signin");
   if (res.status === 204) return undefined as T;
   const body = await res.json().catch(() => null);
   if (!res.ok) {

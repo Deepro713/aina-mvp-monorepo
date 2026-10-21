@@ -45,8 +45,8 @@ export default function LandingPage() {
               ))}
             </ul>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link href="/signin" className={buttonClass("primary", "lg")}>
-                Sign in with email <ArrowRight aria-hidden className="size-4" />
+              <Link href="/dashboard" className={buttonClass("primary", "lg")}>
+                Get started <ArrowRight aria-hidden className="size-4" />
               </Link>
               <Link href="#how" className={buttonClass("secondary", "lg")}>How it works</Link>
             </div>
@@ -122,9 +122,9 @@ export default function LandingPage() {
         <Card className="flex flex-col items-start gap-4 bg-gradient-to-br from-indigo-600/20 to-fuchsia-600/10 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h2 className="text-xl font-semibold text-white">Ready to triage your first batch?</h2>
-            <p className="mt-1 text-sm text-slate-300">No password. We email you a one-time sign-in link.</p>
+            <p className="mt-1 text-sm text-slate-300">No account or sign-in needed. Just open the app.</p>
           </div>
-          <Link href="/signin" className={buttonClass("primary", "lg")}>Sign in with email <ArrowRight aria-hidden className="size-4" /></Link>
+          <Link href="/dashboard" className={buttonClass("primary", "lg")}>Get started <ArrowRight aria-hidden className="size-4" /></Link>
         </Card>
       </section>
     </>

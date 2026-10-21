@@ -9,7 +9,7 @@
 
 ## Stack
 
-Next.js 16 (App Router, TypeScript, Node 22) · React 19 · shadcn/ui on Tailwind v4 · Neon Postgres via Drizzle ORM · Auth.js v5 magic links via Resend · Vercel AI SDK 5 · zod 4 · Vercel Pro hosting.
+Next.js 16 (App Router, TypeScript, Node 22) · React 19 · shadcn/ui on Tailwind v4 · Neon Postgres via Drizzle ORM · no sign-in (each browser gets an anonymous workspace cookie) · Vercel AI SDK 5 · zod 4 · Vercel Pro hosting.
 
 ## Quickstart
 

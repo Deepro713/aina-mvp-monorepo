@@ -36,6 +36,8 @@ export const entryPatchSchema = z
     message: "Provide sentiment and/or category.",
   });
 
+export const DELETE_CONFIRM_WORD = "delete";
+
 export const accountDeleteSchema = z.object({
-  confirm_email: z.string().trim().min(1, "Type your email to confirm."),
+  confirm: z.string().trim().min(1, `Type "${DELETE_CONFIRM_WORD}" to confirm.`),
 });

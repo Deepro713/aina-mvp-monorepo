@@ -20,11 +20,11 @@ export default async function DashboardPage({ searchParams }: { searchParams: Pr
   const sp = await searchParams;
   const range: Range = (RANGES as readonly string[]).includes(sp.range ?? "") ? (sp.range as Range) : "all";
   const { user, connection } = await loadAppContext();
-  if (!user) redirect("/signin");
+  if (!user) redirect("/");
 
   const { stats, entries, next_cursor } = await getDashboardData(user.id, range);
   const hasAny = stats.total > 0 || (range !== "all" && (await getStats(user.id, "all")).total > 0);
-  if (!connection && !hasAny) redirect("/connect"); // first run: magic link lands here
+  if (!connection && !hasAny) redirect("/connect"); // first run
 
   const sentimentData = SENTIMENT_KEYS.map((k) => ({ key: k, label: SENTIMENT_META[k].label, value: stats.sentiment[k], color: SENTIMENT_META[k].color }));
   const categoryData = CATEGORY_KEYS.map((k) => ({ key: k, label: CATEGORY_META[k].label, value: stats.category[k], color: CATEGORY_META[k].color }))
