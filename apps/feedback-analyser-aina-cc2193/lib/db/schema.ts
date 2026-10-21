@@ -3,7 +3,6 @@ import { sql } from "drizzle-orm";
 import {
   check, index, integer, pgEnum, pgTable, primaryKey, smallint, text, timestamp, uuid,
 } from "drizzle-orm/pg-core";
-import type { AdapterAccountType } from "next-auth/adapters";
 
 export const SENTIMENTS = ["positive", "neutral", "negative", "mixed"] as const;
 export const CATEGORIES = [
@@ -24,7 +23,8 @@ export const labelFieldEnum = pgEnum("label_field", LABEL_FIELDS);
 
 const tz = (name: string) => timestamp(name, { withTimezone: true, mode: "date" });
 
-// ── Auth.js (Drizzle adapter shape) ─────────────────────────
+// ── Users ───────────────────────────────────────────────────
+// One row per anonymous browser workspace (see lib/workspace.ts); email is a placeholder.
 export const users = pgTable("users", {
   id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
   name: text("name"),
@@ -34,12 +34,12 @@ export const users = pgTable("users", {
   createdAt: tz("created_at").notNull().defaultNow(),
 });
 
-// Unused by magic links, but the adapter's type contract requires it.
+// Legacy tables from the removed magic-link sign-in. Unused; kept so existing databases don't need a migration.
 export const accounts = pgTable(
   "accounts",
   {
     userId: text("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
-    type: text("type").$type<AdapterAccountType>().notNull(),
+    type: text("type").notNull(),
     provider: text("provider").notNull(),
     providerAccountId: text("provider_account_id").notNull(),
     refresh_token: text("refresh_token"),

@@ -1,14 +1,12 @@
-import { auth } from "@/auth";
 import { getConnectionRow, toConnectionDto } from "@/lib/connection";
+import { getWorkspaceUser } from "@/lib/workspace";
 
-/** For server components / layouts: null when signed out. */
+/** For server components / layouts: null only if the workspace cookie is missing. */
 export async function getSessionUser(): Promise<{ id: string; email: string } | null> {
-  const session = await auth();
-  const id = session?.user?.id;
-  return id ? { id, email: session.user?.email ?? "" } : null;
+  return getWorkspaceUser();
 }
 
-/** For the (app) layout: decide between /signin, /connect, or render. */
+/** For the (app) layout: decide between /connect or render. */
 export async function getAppContext() {
   const user = await getSessionUser();
   if (!user) return { user: null, connection: null } as const;

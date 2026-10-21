@@ -20,7 +20,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
           </nav>
         }
       >
-        <Link href="/signin" className={buttonClass("primary", "sm")}>Sign in with email</Link>
+        <Link href="/dashboard" className={buttonClass("primary", "sm")}>Open the app</Link>
       </SiteHeader>
       <main className="relative isolate flex-1">{children}</main>
       <SiteFooter />

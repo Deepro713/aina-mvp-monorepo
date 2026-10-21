@@ -10,19 +10,10 @@ vi.mock("@/lib/db/client", async () => {
   return { getDb: () => h.getTestDb(), isDbConfigured: () => true, DbNotConfiguredError };
 });
 
-// Auth.js is replaced by an injectable session; sign-in emails are never sent.
-vi.mock("@/auth", async () => {
+// The workspace cookie is replaced by an injectable "session" (the current workspace user).
+vi.mock("@/lib/workspace", async () => {
   const s = await import("./helpers/session");
-  return {
-    auth: vi.fn(async () => s.getSession()),
-    signIn: vi.fn(async () => undefined),
-    signOut: vi.fn(async () => undefined),
-    handlers: {
-      GET: vi.fn(async () => new Response("auth-get")),
-      POST: vi.fn(async () => new Response("delegated-to-authjs", { status: 200 })),
-    },
-    MagicLinkRateLimitError: class extends Error {},
-  };
+  return { getWorkspaceUser: vi.fn(async () => s.getSession()?.user ?? null) };
 });
 
 // Only the model calls are faked; error classes (APICallError, …) stay real.

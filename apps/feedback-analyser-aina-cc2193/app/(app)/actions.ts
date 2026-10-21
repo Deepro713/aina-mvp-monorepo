@@ -1,7 +1,2 @@
-"use server";
-
-import { signOut } from "@/auth";
-
-export async function signOutAction() {
-  await signOut({ redirectTo: "/" });
-}
+// Sign-out was removed (auth: none). This file is intentionally empty and can be deleted.
+export {};

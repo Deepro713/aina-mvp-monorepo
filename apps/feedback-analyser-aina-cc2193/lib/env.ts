@@ -9,8 +9,6 @@ export const config = {
   analyzeDailyLimit: int("ANALYZE_DAILY_LIMIT", 500),
   analyzeDeadlineMs: 55_000, // under maxDuration=60 with headroom for the DB write
   testTimeoutMs: 25_000, // under maxDuration=30
-  magicLinkHourlyLimit: int("MAGIC_LINK_HOURLY_LIMIT", 5),
-  magicLinkMaxAgeSeconds: int("MAGIC_LINK_MAX_AGE_SECONDS", 600),
   keyEncryptionVersion: int("KEY_ENCRYPTION_VERSION", 1),
   rawTextMax: 10_000,
   summaryMaxWords: 25,
